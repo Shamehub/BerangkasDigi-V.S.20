@@ -1,0 +1,14 @@
+cara push ke github:
+
+Aplikasi sudah siap didalam folder lokal:
+- buat repository pada github, pastikan nama reponya di ingat
+- buka CMD, ketikan:pilih lokasi folder yang akan di push. misal:
+ cd /d "D:\APLIKASI BUATAN\Deploy to Github\Berangkas V.S20"
+- Inisialisasi Git dan upload file dengan menjalankan perintah ini satu per satu:
+ * git init
+ * git add .
+ * git commit -m "Initial commit"
+ * git branch -M main
+ * git remote add origin https://github.com/USERNAME/NAMA-REPO.git (SESUAIKAN DENGAN USERNAME GITHUB DAN NAMA REPO)
+ * git push -u origin main
+
