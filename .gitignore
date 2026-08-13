@@ -1,4 +1,3 @@
-Plaintext
-
+# Abaikan semua file dengan ekstensi tertentu
 *.bat
 *.gs
