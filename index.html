@@ -15,7 +15,6 @@
   <div id="app-wrapper">
     <div class="sidebar-overlay" id="sidebar-overlay" onclick="App.toggleSidebar()"></div>
 
-    <!-- SIDEBAR -->
     <aside id="sidebar">
       <div class="sidebar-brand">
         <div class="d-flex align-items-center gap-2">
@@ -42,47 +41,30 @@
       </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main id="main-content">
       <header class="top-navbar">
-        <div class="top-navbar-container">
-          <!-- Kiri: Menu Mobile & Judul -->
-          <div class="top-navbar-left">
-            <button class="btn btn-action-outline d-md-none p-2" onclick="App.toggleSidebar()">
-              <i class="fas fa-bars"></i>
-            </button>
-            <div class="folder-title-wrap">
-              <i class="fas fa-folder text-warning fs-5"></i>
-              <h5 id="header-title">Haliem</h5>
-            </div>
-          </div>
-          
-          <!-- Kanan: Tombol Aksi -->
-          <div class="top-navbar-right">
-            <button class="btn btn-action-outline" onclick="App.navigateToHome()">
-              <i class="fas fa-arrow-left"></i> Utama
-            </button>
-            
-            <button class="btn btn-action-outline" onclick="App.openVaultSettings()">
-              <i class="fas fa-gear"></i> Pengaturan
-            </button>
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-metal d-md-none p-2" onclick="App.toggleSidebar()">
+            <i class="fas fa-bars fa-lg"></i>
+          </button>
+          <h5 class="m-0 fw-bold text-dark" id="header-title">
+            <i class="fas fa-shield-halved text-warning me-2"></i> DASBOR BERANGKAS PUBLIK
+          </h5>
+        </div>
+        
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge bg-dark border border-secondary text-warning px-3 py-2" id="status-badge">
+            Status: Publik
+          </span>
 
-            <button class="btn btn-action-outline" onclick="App.openCreateFolderModal()">
-              <i class="fas fa-folder-plus"></i> Tambah Folder
-            </button>
+          <button id="btn-install-pwa" class="btn btn-sm btn-gold d-none" onclick="App.installPWA()">
+            <i class="fas fa-download me-1"></i> Install Aplikasi
+          </button>
 
-            <button class="btn btn-action-gold" onclick="App.openUploadModal()">
-              <i class="fas fa-cloud-upload-alt"></i> Unggah
-            </button>
-
-            <span class="badge badge-status" id="status-badge">
-              <i class="fas fa-circle text-success me-1"></i> Publik
-            </span>
-
-            <button id="btn-refresh-manual" class="btn btn-icon-refresh" onclick="App.handleManualRefresh()" title="Refresh Data">
-              <i class="fas fa-rotate-right"></i>
-            </button>
-          </div>
+          <!-- Tombol Refresh Manual -->
+          <button type="button" id="btn-refresh-manual" class="btn btn-sm btn-outline-metal px-2 py-1" onclick="App.handleManualRefresh()" title="Refresh Berkas / Data">
+            <i class="fas fa-rotate-right" style="pointer-events: none;"></i>
+          </button>
         </div>
       </header>
 
@@ -90,14 +72,13 @@
     </main>
   </div>
 
-  <!-- MODAL: PINPAD SECURITY -->
   <div class="modal fade" id="modalPin" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4 text-center">
         <h5 class="fw-bold text-warning mb-1" id="pin-modal-title">Akses Berangkas</h5>
         <p class="text-muted small mb-3">Masukkan 6 digit kode PIN Keamanan</p>
         
-        <input type="password" id="input-pin-vault" maxlength="6" inputmode="numeric" class="form-control form-control-dark text-center fs-3 fw-bold mb-3 text-warning" style="letter-spacing: 6px;" readonly>
+        <input type="password" id="input-pin-vault" maxlength="6" inputmode="numeric" class="form-control form-control-dark text-center fs-3 fw-bold mb-3 text-warning" style="letter-spacing: 6px;">
 
         <div class="pinpad-grid mb-3">
           <button class="pin-btn" onclick="App.pressPin('1')">1</button>
@@ -118,7 +99,6 @@
     </div>
   </div>
 
-  <!-- MODAL: PREVIEW FILE -->
   <div class="modal fade" id="modalPreview" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content dark-vault border-secondary">
@@ -131,7 +111,6 @@
     </div>
   </div>
 
-  <!-- MODAL: LOGIN ADMIN -->
   <div class="modal fade" id="modalAdmin" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
@@ -150,7 +129,6 @@
     </div>
   </div>
 
-  <!-- MODAL: UNGGAH DOKUMEN/FOLDER -->
   <div class="modal fade" id="modalUpload" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content dark-vault p-4">
@@ -184,7 +162,6 @@
     </div>
   </div>
 
-  <!-- MODAL: BUAT FOLDER BARU -->
   <div class="modal fade" id="modalCreateFolder" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
@@ -196,7 +173,6 @@
     </div>
   </div>
 
-  <!-- MODAL: BUAT BERANGKAS BARU -->
   <div class="modal fade" id="modalCreateVault" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
@@ -215,7 +191,6 @@
     </div>
   </div>
 
-  <!-- MODAL: PENGATURAN BERANGKAS -->
   <div class="modal fade" id="modalVaultSettings" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
@@ -234,7 +209,6 @@
     </div>
   </div>
 
-  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="AppEngine.js"></script>
