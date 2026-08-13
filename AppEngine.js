@@ -206,7 +206,7 @@ const App = {
     });
 
     html += '</div>' +
-            '<div class="mx-3 mx-md-4 p-5 text-center dark-vault rounded-4 border border-secondary">' +
+            '<div class="mx-3 mx-md-8 p-9 text-center dark-vault rounded-4 border border-secondary">' +
             '<i class="fas fa-lock-keyhole fa-4x text-warning mb-3"></i>' +
             '<h4 class="fw-bold text-dark">Sistem Keamanan Berangkas Terenkripsi</h4>' +
             '<p class="text-muted">Pilih berangkas dari sidebar atau kartu di atas untuk membuka dokumen aman Anda.</p>' +
