@@ -15,10 +15,9 @@ html, body {
   color: var(--text-dark) !important;
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
+  /* Mematikan fitur pull-to-refresh dan efek bounce di browser mobile */
   overscroll-behavior-y: none;
   touch-action: pan-x pan-y;
-  margin: 0;
-  padding: 0;
 }
 
 #app-wrapper {
@@ -29,9 +28,7 @@ html, body {
   position: relative;
 }
 
-/* ==========================================
-   SIDEBAR STYLES
-   ========================================== */
+/* SIDEBAR STYLES */
 #sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
@@ -45,7 +42,7 @@ html, body {
 }
 
 .sidebar-brand {
-  padding: 20px 16px;
+  padding: 24px 20px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
   display: flex;
   align-items: center;
@@ -53,19 +50,19 @@ html, body {
 }
 
 .sidebar-brand i {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--gold-primary);
 }
 
 .sidebar-brand span {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   color: #ffffff;
 }
 
 .nav-menu {
-  padding: 16px 12px;
+  padding: 20px 12px;
   flex: 1;
   overflow-y: auto;
 }
@@ -84,15 +81,15 @@ html, body {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
+  gap: 14px;
+  padding: 12px 16px;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 10px;
   color: #d8ceb9;
   font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
   text-align: left;
   transition: all 0.2s ease;
 }
@@ -103,9 +100,7 @@ html, body {
   border-color: var(--gold-primary);
 }
 
-/* ==========================================
-   MAIN CONTENT & HEADER FIX
-   ========================================== */
+/* MAIN CONTENT STYLES & STICKY HEADER */
 #main-content {
   flex: 1;
   display: flex;
@@ -116,139 +111,53 @@ html, body {
   overscroll-behavior-y: none;
 }
 
-/* HEADER PERBAIKAN TOTAL */
 .top-navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid var(--border-gold);
   padding: 12px 20px;
-  box-shadow: 0 4px 15px rgba(138, 109, 28, 0.06);
+  border-bottom: 2px solid var(--border-gold);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(138, 109, 28, 0.08);
   width: 100%;
 }
 
-.top-navbar-container {
+.top-navbar-title-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
-}
-
-.top-navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  flex-shrink: 1;
-}
-
-.folder-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 }
 
-.folder-title-wrap h5 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.top-navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+/* TOOLBAR AKSI FIXED OVERFLOW & FLEX WRAP */
+.vault-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
   justify-content: flex-end;
-  flex-shrink: 0;
 }
 
-/* BUTTONS STYLES HEADER */
-.btn-action-outline {
-  background: #ffffff;
-  border: 1.5px solid var(--gold-dark);
-  color: var(--gold-dark);
-  font-weight: 700;
-  font-size: 0.82rem;
-  padding: 6px 12px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+.vault-header-actions .btn {
+  white-space: nowrap !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.btn-action-outline:hover {
-  background: var(--gold-dark);
-  color: #ffffff;
-  transform: translateY(-1px);
+.vault-header-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
 }
 
-.btn-action-gold {
-  background: var(--gold-gradient);
-  border: 1px solid var(--gold-dark);
-  color: #1a1710;
-  font-weight: 800;
-  font-size: 0.82rem;
-  padding: 6px 14px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3);
-}
-
-.btn-action-gold:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
-}
-
-.badge-status {
-  background: #191919;
-  color: var(--gold-primary);
-  border: 1px solid var(--gold-dark);
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.btn-icon-refresh {
-  background: #ffffff;
-  border: 1.5px solid var(--border-gold);
-  color: var(--gold-dark);
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.btn-icon-refresh:hover {
-  background: var(--gold-dark);
-  color: #ffffff;
-}
-
-/* ==========================================
-   CARDS & COMPONENTS
-   ========================================== */
+/* CARDS & COMPONENTS */
 .vault-card {
   background: var(--card-bg);
   border: 2px solid var(--border-gold);
@@ -284,26 +193,25 @@ html, body {
   font-weight: 800;
 }
 
-/* ==========================================
-   PINPAD STYLES
-   ========================================== */
+/* PINPAD STYLES */
 .pinpad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: 100% !important;
+  max-width: 100% !important;
   margin: 0 auto;
   padding: 10px 0;
 }
 
 .pin-btn {
   width: 100%;
-  height: 60px;
-  border-radius: 14px;
+  height: 70px;
+  border-radius: 16px;
   background: #ffffff;
   border: 2px solid var(--border-gold);
   color: var(--text-dark);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -347,20 +255,18 @@ html, body {
 
 #input-pin-vault, #pin-input {
   width: 100%;
-  height: 55px;
-  font-size: 2rem !important;
-  letter-spacing: 8px !important;
+  height: 60px;
+  font-size: 2.2rem !important;
+  letter-spacing: 10px !important;
   border: 2px solid var(--border-gold) !important;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
-/* ==========================================
-   MODALS & TABLES
-   ========================================== */
+/* MODALS & TABLES */
 .modal-content.dark-vault {
   background: #ffffff !important;
   border: 2px solid var(--gold-primary) !important;
-  border-radius: 18px;
+  border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
   color: var(--text-dark) !important;
 }
@@ -390,7 +296,7 @@ html, body {
 
 .table-dark-vault th {
   background: #f0e6ce !important;
-  padding: 12px;
+  padding: 14px;
   border-bottom: 2px solid var(--border-gold) !important;
   color: var(--gold-dark) !important;
   font-weight: 800;
@@ -398,7 +304,7 @@ html, body {
 }
 
 .table-dark-vault td {
-  padding: 12px;
+  padding: 14px;
   border-bottom: 1px solid var(--border-gold) !important;
   vertical-align: middle;
   color: var(--text-dark) !important;
@@ -425,14 +331,7 @@ html, body {
   border-radius: 8px;
 }
 
-.btn-outline-metal:hover {
-  background: var(--gold-dark);
-  color: #ffffff;
-}
-
-/* ==========================================
-   FILE EXPLORER GRID VIEW STYLE
-   ========================================== */
+/* FILE EXPLORER GRID VIEW STYLE */
 .file-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -516,7 +415,35 @@ html, body {
   display: flex;
 }
 
-/* RESPONSIVE MOBILE */
+.btn-outline-metal:hover {
+  background: var(--gold-dark);
+  color: #ffffff;
+}
+
+.photo-preview-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-zoomable {
+  transition: transform 0.1s ease-out;
+  transform-origin: center center;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  cursor: grab;
+}
+
+.photo-zoomable:active {
+  cursor: grabbing;
+}
+
+/* MEDIA QUERIES RESPONSIVE */
 @media (max-width: 767.98px) {
   #sidebar {
     position: fixed;
@@ -533,7 +460,10 @@ html, body {
   .sidebar-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
     background: rgba(0,0,0,0.6);
     z-index: 1040;
     backdrop-filter: blur(2px);
@@ -543,34 +473,40 @@ html, body {
     display: block;
   }
 
-  .top-navbar-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+  .top-navbar {
+    padding: 10px 14px;
   }
 
-  .top-navbar-right {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    width: 100%;
+  .vault-header-actions {
+    width: 100% !important;
+    justify-content: flex-start !important;
   }
 
-  .btn-action-outline, 
-  .btn-action-gold {
-    width: 100%;
+  .vault-header-actions .btn {
+    flex: 1 1 auto;
     justify-content: center;
-    font-size: 0.78rem;
-    padding: 8px;
+    font-size: 0.8rem !important;
+    padding: 7px 10px !important;
   }
 
-  .badge-status {
-    justify-content: center;
+  .pin-btn {
+    height: 58px;
+    font-size: 1.5rem;
+    border-radius: 12px;
   }
 
-  .btn-icon-refresh {
-    width: 100%;
-    height: 100%;
-    min-height: 36px;
+  #input-pin-vault, #pin-input {
+    height: 50px;
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  #main-content {
+    padding-bottom: 24px;
   }
 }
