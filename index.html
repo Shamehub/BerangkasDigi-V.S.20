@@ -42,29 +42,45 @@
     </aside>
 
     <main id="main-content">
-      <header class="top-navbar d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center gap-2">
-          <button class="btn btn-outline-metal d-md-none p-2" onclick="App.toggleSidebar()">
-            <i class="fas fa-bars fa-lg"></i>
-          </button>
-          <h5 class="m-0 fw-bold text-dark" id="header-title">
-            <i class="fas fa-shield-halved text-warning me-2"></i> DASBOR BERANGKAS PUBLIK
-          </h5>
-        </div>
-        
-        <div class="status-actions-wrapper d-flex align-items-center gap-2">
-          <span class="badge bg-dark border border-secondary text-warning px-3 py-2" id="status-badge">
-            Status: Publik
-          </span>
+      <header class="top-navbar">
+        <div class="top-navbar-container">
+          <!-- Sisi Kiri: Toggle Mobile & Judul Folder -->
+          <div class="top-navbar-left">
+            <button class="btn btn-outline-metal d-md-none me-2" onclick="App.toggleSidebar()">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="folder-title-wrap">
+              <i class="fas fa-folder text-warning fs-4"></i>
+              <h5 class="m-0 fw-bold text-dark text-truncate" id="header-title">Haliem</h5>
+            </div>
+          </div>
+          
+          <!-- Sisi Kanan: Action Buttons & Status Badge -->
+          <div class="top-navbar-right">
+            <button class="btn btn-action-outline" onclick="App.navigateToHome()">
+              <i class="fas fa-arrow-left me-1"></i> Utama
+            </button>
+            
+            <button class="btn btn-action-outline" onclick="App.openVaultSettings()">
+              <i class="fas fa-gear me-1"></i> Pengaturan
+            </button>
 
-          <button id="btn-install-pwa" class="btn btn-sm btn-gold d-none" onclick="App.installPWA()">
-            <i class="fas fa-download me-1"></i> Install Aplikasi
-          </button>
+            <button class="btn btn-action-outline" onclick="App.openCreateFolderModal()">
+              <i class="fas fa-folder-plus me-1"></i> Tambah Folder
+            </button>
 
-          <!-- Tombol Refresh Manual -->
-          <button type="button" id="btn-refresh-manual" class="btn btn-sm btn-outline-metal px-2 py-1" onclick="App.handleManualRefresh()" title="Refresh Berkas / Data">
-            <i class="fas fa-rotate-right" style="pointer-events: none;"></i>
-          </button>
+            <button class="btn btn-action-gold" onclick="App.openUploadModal()">
+              <i class="fas fa-cloud-upload-alt me-1"></i> Unggah File/Folder
+            </button>
+
+            <span class="badge badge-status" id="status-badge">
+              <i class="fas fa-circle text-success me-1"></i> Status: Publik
+            </span>
+
+            <button id="btn-refresh-manual" class="btn btn-icon-refresh" onclick="App.handleManualRefresh()" title="Refresh Data">
+              <i class="fas fa-rotate-right"></i>
+            </button>
+          </div>
         </div>
       </header>
 
