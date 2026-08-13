@@ -3,214 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BERANGKAS DIGITAL SHAME20</title>
+  <title>Berangkas Digital</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="VisualStyle.css">
 </head>
 <body>
 
-  <div id="app-wrapper">
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="App.toggleSidebar()"></div>
+  <!-- Overlay untuk Mobile/Tablet saat Sidebar Terbuka -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+  <div id="app-wrapper">
+    
+    <!-- SIDEBAR -->
     <aside id="sidebar">
-      <div class="sidebar-brand">
-        <div class="d-flex align-items-center gap-2">
-          <i class="fas fa-vault"></i>
+      <div>
+        <div class="sidebar-brand">
+          <i class="fa-solid fa-vault"></i>
           <span>BERANGKAS V.S20</span>
         </div>
-        <button class="btn btn-sm text-white d-md-none" onclick="App.toggleSidebar()">
-          <i class="fas fa-times fa-lg"></i>
-        </button>
+
+        <nav class="nav-menu">
+          <div class="menu-label">MENU BERANGKAS</div>
+          <button class="nav-item-btn active">
+            <i class="fa-solid fa-folder"></i>
+            <span>Haliem</span>
+          </button>
+          <button class="nav-item-btn">
+            <i class="fa-solid fa-folder"></i>
+            <span>Banksam</span>
+          </button>
+          <button class="nav-item-btn">
+            <i class="fa-solid fa-folder"></i>
+            <span>Mumut</span>
+          </button>
+          <button class="nav-item-btn">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Berangkas 3smusdf sadfh</span>
+          </button>
+        </nav>
       </div>
 
-      <div class="nav-menu">
-        <div class="menu-label">Menu Berangkas</div>
-        <div id="sidebar-vault-links"></div>
-      </div>
-
-      <div class="p-3 border-top border-secondary">
-        <button id="btn-mode-admin" class="btn btn-outline-metal w-100 btn-sm" onclick="App.openAdminModal()">
-          <i class="fas fa-user-shield me-2"></i> Mode Admin
-        </button>
-        <button id="btn-mode-public" class="btn btn-gold w-100 btn-sm d-none" onclick="App.switchPublicMode()">
-          <i class="fas fa-eye me-2"></i> Mode Publik
+      <!-- Mode Admin di Bagian Bawah Sidebar -->
+      <div class="sidebar-footer">
+        <button class="nav-item-btn">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Mode Admin</span>
         </button>
       </div>
     </aside>
 
+    <!-- MAIN CONTENT -->
     <main id="main-content">
+      
+      <!-- TOP NAVBAR -->
       <header class="top-navbar">
-        <div class="d-flex align-items-center gap-3">
-          <button class="btn btn-outline-metal d-md-none p-2" onclick="App.toggleSidebar()">
-            <i class="fas fa-bars fa-lg"></i>
+        <div class="top-navbar-title-wrap">
+          <!-- Tombol Hamburger (≡) Tampil di Mobile/Tablet -->
+          <button id="btn-toggle-sidebar" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
           </button>
-          <h5 class="m-0 fw-bold text-dark" id="header-title">
-            <i class="fas fa-shield-halved text-warning me-2"></i> DASBOR BERANGKAS PUBLIK
-          </h5>
+
+          <i class="fa-solid fa-folder folder-icon"></i>
+          <h4 class="title-text">Haliem</h4>
         </div>
-        
-        <div class="d-flex align-items-center gap-2">
-          <!-- Tombol Refresh Manual -->
-          <button type="button" id="btn-refresh-manual" class="btn btn-sm btn-outline-metal" onclick="App.handleManualRefresh()" title="Refresh Berkas / Data">
-            <i class="fas fa-rotate-right" style="pointer-events: none;"></i>
-          </button>
 
-          <button id="btn-install-pwa" class="btn btn-sm btn-gold d-none" onclick="App.installPWA()">
-            <i class="fas fa-download me-1"></i> Install Aplikasi
+        <!-- ACTION BUTTONS -->
+        <div class="vault-header-actions">
+          <button class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Utama
           </button>
-
-          <span class="badge bg-dark border border-secondary text-warning px-3 py-2" id="status-badge">
+          <button class="btn btn-outline">
+            <i class="fa-solid fa-gear"></i> Pengaturan
+          </button>
+          <button class="btn btn-outline">
+            <i class="fa-solid fa-folder-plus"></i> Tambah Folder
+          </button>
+          <button class="btn btn-warning">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Unggah File/Folder
+          </button>
+          <button class="btn btn-warning">
+            <i class="fa-solid fa-download"></i> Install Aplikasi
+          </button>
+          <button class="btn btn-refresh">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button class="btn btn-dark">
             Status: Publik
-          </span>
+          </button>
         </div>
       </header>
 
-      <div class="p-4" id="view-container"></div>
-    </main>
-  </div>
-
-  <div class="modal fade" id="modalPin" data-bs-backdrop="static" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content dark-vault p-4 text-center">
-        <h5 class="fw-bold text-warning mb-1" id="pin-modal-title">Akses Berangkas</h5>
-        <p class="text-muted small mb-3">Masukkan 6 digit kode PIN Keamanan</p>
+      <!-- CONTENT BODY -->
+      <div class="content-body">
         
-        <input type="password" id="input-pin-vault" maxlength="6" inputmode="numeric" class="form-control form-control-dark text-center fs-3 fw-bold mb-3 text-warning" style="letter-spacing: 6px;">
-
-        <div class="pinpad-grid mb-3">
-          <button class="pin-btn" onclick="App.pressPin('1')">1</button>
-          <button class="pin-btn" onclick="App.pressPin('2')">2</button>
-          <button class="pin-btn" onclick="App.pressPin('3')">3</button>
-          <button class="pin-btn" onclick="App.pressPin('4')">4</button>
-          <button class="pin-btn" onclick="App.pressPin('5')">5</button>
-          <button class="pin-btn" onclick="App.pressPin('6')">6</button>
-          <button class="pin-btn" onclick="App.pressPin('7')">7</button>
-          <button class="pin-btn" onclick="App.pressPin('8')">8</button>
-          <button class="pin-btn" onclick="App.pressPin('9')">9</button>
-          <button class="pin-btn text-danger" onclick="App.clearPin()">C</button>
-          <button class="pin-btn" onclick="App.pressPin('0')">0</button>
-          <button class="pin-btn text-success" onclick="App.submitPin()"><i class="fas fa-check"></i></button>
-        </div>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalPreview" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content dark-vault border-secondary">
-        <div class="modal-header border-bottom border-secondary d-flex justify-content-between align-items-center py-2 px-3">
-          <h5 class="modal-title text-warning fs-6 text-truncate m-0" id="preview-file-title">Pratinjau File</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-2" id="preview-modal-body"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalAdmin" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content dark-vault p-4">
-        <h5 class="fw-bold text-warning text-center mb-3"><i class="fas fa-lock me-2"></i>Otorisasi Admin</h5>
-        <div class="mb-3">
-          <label class="form-label text-muted small">Username</label>
-          <input type="text" id="admin-user" class="form-control form-control-dark">
-        </div>
-        <div class="mb-3">
-          <label class="form-label text-muted small">Password</label>
-          <input type="password" id="admin-pass" class="form-control form-control-dark">
-        </div>
-        <button class="btn btn-gold w-100 mb-2" onclick="App.submitAdminLogin()">Login Kontrol Admin</button>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalUpload" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content dark-vault p-4">
-        <h5 class="fw-bold text-warning mb-3"><i class="fas fa-cloud-upload-alt me-2"></i>Unggah Dokumen / Folder</h5>
-        
-        <div class="mb-3">
-          <label class="form-label text-muted small d-block">Tipe Unggahan</label>
-          <div class="btn-group w-100" role="group">
-            <input type="radio" class="btn-check" name="uploadType" id="uploadTypeFile" value="file" checked onchange="App.toggleUploadMode('file')">
-            <label class="btn btn-outline-metal btn-sm" for="uploadTypeFile"><i class="fas fa-file me-1"></i> File Satuan</label>
-
-            <input type="radio" class="btn-check" name="uploadType" id="uploadTypeFolder" value="folder" onchange="App.toggleUploadMode('folder')">
-            <label class="btn btn-outline-metal btn-sm" for="uploadTypeFolder"><i class="fas fa-folder-open me-1"></i> Seluruh Folder</label>
+        <!-- SEARCH BAR HITAM -->
+        <div class="search-container">
+          <div class="search-input-group">
+            <div class="search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" id="search-input" placeholder="Cari file/folder...">
           </div>
         </div>
 
-        <div class="mb-3" id="wrapper-file-input">
-          <label class="form-label text-muted small">Pilih Berkas (Bisa pilih banyak file)</label>
-          <input type="file" id="file-input" class="form-control form-control-dark" multiple>
+        <!-- SUBTITLE -->
+        <div class="section-title">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Daftar Berkas & Folder</span>
         </div>
 
-        <div class="mb-3 d-none" id="wrapper-folder-input">
-          <label class="form-label text-muted small">Pilih Folder dari Komputer/HP</label>
-          <input type="file" id="folder-input" class="form-control form-control-dark" webkitdirectory directory multiple>
-          <div class="form-text text-muted small mt-1">Seluruh file dan sub-folder di dalamnya akan diunggah sesuai struktur.</div>
+        <!-- FILE GRID -->
+        <div class="file-grid-container" id="file-list">
+          
+          <!-- Item PDF 1 -->
+          <div class="file-grid-item">
+            <div class="file-grid-preview">
+              <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 3.5rem;"></i>
+            </div>
+            <div class="file-grid-title">قوت الحبيب الغريب الشيخ محمد نووي البنتني.pdf</div>
+          </div>
+
+          <!-- Item PDF 2 -->
+          <div class="file-grid-item">
+            <div class="file-grid-preview">
+              <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 3.5rem;"></i>
+            </div>
+            <div class="file-grid-title">كاشفة_Saja_شرح_سفينة_النجا الشيخ محمد نووي.pdf</div>
+          </div>
+
+          <!-- Item PDF 3 -->
+          <div class="file-grid-item">
+            <div class="file-grid-preview">
+              <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 3.5rem;"></i>
+            </div>
+            <div class="file-grid-title">مدارج الصعود شرح مولد البرزنجي للشيخ محمد نووي...</div>
+          </div>
+
+          <!-- Item PDF 4 -->
+          <div class="file-grid-item">
+            <div class="file-grid-preview">
+              <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 3.5rem;"></i>
+            </div>
+            <div class="file-grid-title">مراقي العبودية شرح بداية الهداية للشيخ محمد نووي...</div>
+          </div>
+
+          <!-- Item PDF 5 -->
+          <div class="file-grid-item">
+            <div class="file-grid-preview">
+              <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 3.5rem;"></i>
+            </div>
+            <div class="file-grid-title">حلية الصبيان على فتح الرحمن الشيخ محمد نووي...</div>
+          </div>
+
         </div>
 
-        <button class="btn btn-gold w-100 mb-2" onclick="App.execUpload()">Mulai Unggah</button>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
-    </div>
+    </main>
   </div>
 
-  <div class="modal fade" id="modalCreateFolder" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content dark-vault p-4">
-        <h5 class="fw-bold text-warning mb-3"><i class="fas fa-folder-plus me-2"></i>Buat Folder Baru</h5>
-        <input type="text" id="folder-name-input" class="form-control form-control-dark mb-3" placeholder="Nama folder...">
-        <button class="btn btn-gold w-100 mb-2" onclick="App.execCreateFolder()">Buat Folder</button>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
+  <!-- Script Sederhana Toggle Sidebar untuk HP/Tablet -->
+  <script>
+    const btnToggle = document.getElementById('btn-toggle-sidebar');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
 
-  <div class="modal fade" id="modalCreateVault" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content dark-vault p-4">
-        <h5 class="fw-bold text-warning mb-3"><i class="fas fa-plus-circle me-2"></i>Tambah Menu Berangkas</h5>
-        <div class="mb-3">
-          <label class="form-label text-muted small">Nama Menu Berangkas</label>
-          <input type="text" id="new-vault-name" class="form-control form-control-dark">
-        </div>
-        <div class="mb-3">
-          <label class="form-label text-muted small">PIN Akses (6 Digit)</label>
-          <input type="password" id="new-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark">
-        </div>
-        <button class="btn btn-gold w-100 mb-2" onclick="App.execCreateVault()">Tambah Berangkas</button>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
+    if (btnToggle) {
+      btnToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('show-sidebar');
+        overlay.classList.toggle('active');
+      });
+    }
 
-  <div class="modal fade" id="modalVaultSettings" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content dark-vault p-4">
-        <h5 class="fw-bold text-warning mb-3"><i class="fas fa-gear me-2"></i>Pengaturan Berangkas</h5>
-        <div class="mb-3">
-          <label class="form-label text-muted small">Nama Berangkas</label>
-          <input type="text" id="setting-vault-name" class="form-control form-control-dark">
-        </div>
-        <div class="mb-3">
-          <label class="form-label text-muted small">PIN Baru (6 Digit)</label>
-          <input type="password" id="setting-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark" placeholder="Kosongkan jika tidak diubah">
-        </div>
-        <button class="btn btn-gold w-100 mb-2" onclick="App.execUpdateVaultSettings()">Simpan Perubahan</button>
-        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="AppEngine.js"></script>
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('show-sidebar');
+        overlay.classList.remove('active');
+      });
+    }
+  </script>
 </body>
 </html>
