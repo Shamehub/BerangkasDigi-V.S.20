@@ -1,4 +1,4 @@
-// Ganti nilai ini dengan Web App URL hasil Deploy Google Apps Script Anda
+// Ganti nilai ini dengan Web App URL hasil Deploy
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwN6BhR6SJcZCAaLn0rKnJdnskwgJTUu6avHMyoHZHEp_DiH56RJeK2VZb0MWNp6p7g/exec';
 
 let deferredPrompt;
