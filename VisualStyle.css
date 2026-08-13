@@ -10,14 +10,21 @@
   --sidebar-width: 280px;
 }
 
+*, *::before, *::after {
+  box-sizing: border-border;
+}
+
 html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--bg-gold-light) !important;
   color: var(--text-dark) !important;
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
-  /* Mematikan fitur pull-to-refresh dan efek bounce di browser mobile */
   overscroll-behavior-y: none;
-  touch-action: pan-x pan-y;
+  touch-action: manipulation;
 }
 
 #app-wrapper {
@@ -35,14 +42,14 @@ html, body {
   border-right: 2px solid var(--gold-dark);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1050;
   height: 100%;
   flex-shrink: 0;
 }
 
 .sidebar-brand {
-  padding: 24px 20px;
+  padding: 20px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
   display: flex;
   align-items: center;
@@ -50,7 +57,7 @@ html, body {
 }
 
 .sidebar-brand i {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--gold-primary);
 }
 
@@ -62,7 +69,7 @@ html, body {
 }
 
 .nav-menu {
-  padding: 20px 12px;
+  padding: 16px 12px;
   flex: 1;
   overflow-y: auto;
 }
@@ -81,15 +88,15 @@ html, body {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 10px 14px;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 10px;
   color: #d8ceb9;
   font-weight: 600;
   font-size: 0.95rem;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   text-align: left;
   transition: all 0.2s ease;
 }
@@ -121,6 +128,10 @@ html, body {
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(138, 109, 28, 0.08);
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .top-navbar-title-wrap {
@@ -197,21 +208,21 @@ html, body {
 .pinpad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 10px;
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 .pin-btn {
   width: 100%;
-  height: 70px;
-  border-radius: 16px;
+  height: 64px;
+  border-radius: 14px;
   background: #ffffff;
   border: 2px solid var(--border-gold);
   color: var(--text-dark);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -255,9 +266,9 @@ html, body {
 
 #input-pin-vault, #pin-input {
   width: 100%;
-  height: 60px;
-  font-size: 2.2rem !important;
-  letter-spacing: 10px !important;
+  height: 56px;
+  font-size: 2rem !important;
+  letter-spacing: 8px !important;
   border: 2px solid var(--border-gold) !important;
   border-radius: 14px;
 }
@@ -281,6 +292,7 @@ html, body {
 .form-control-dark:focus {
   border-color: var(--gold-dark) !important;
   background: #ffffff !important;
+  box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
 }
 
 .table-responsive {
@@ -322,6 +334,11 @@ html, body {
   box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
 }
 
+.btn-gold:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 14px rgba(212, 175, 55, 0.4);
+}
+
 .btn-outline-metal {
   background: transparent;
   border: 2px solid var(--gold-dark);
@@ -331,12 +348,17 @@ html, body {
   border-radius: 8px;
 }
 
+.btn-outline-metal:hover {
+  background: var(--gold-dark);
+  color: #ffffff;
+}
+
 /* FILE EXPLORER GRID VIEW STYLE */
 .file-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 16px;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .file-grid-item {
@@ -345,7 +367,7 @@ html, body {
   align-items: center;
   justify-content: flex-start;
   padding: 10px 6px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -366,7 +388,7 @@ html, body {
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.03);
 }
@@ -379,7 +401,7 @@ html, body {
 }
 
 .file-grid-preview i {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
 }
 
 .file-grid-title {
@@ -415,11 +437,6 @@ html, body {
   display: flex;
 }
 
-.btn-outline-metal:hover {
-  background: var(--gold-dark);
-  color: #ffffff;
-}
-
 .photo-preview-container {
   overflow: hidden;
   display: flex;
@@ -447,14 +464,15 @@ html, body {
 @media (max-width: 767.98px) {
   #sidebar {
     position: fixed;
-    left: -280px;
+    left: 0;
     top: 0;
     bottom: 0;
+    transform: translateX(-100%);
     box-shadow: 5px 0 15px rgba(0,0,0,0.5);
   }
 
   #sidebar.show-sidebar {
-    left: 0;
+    transform: translateX(0);
   }
 
   .sidebar-overlay {
@@ -490,14 +508,24 @@ html, body {
   }
 
   .pin-btn {
-    height: 58px;
-    font-size: 1.5rem;
+    height: 54px;
+    font-size: 1.4rem;
     border-radius: 12px;
   }
 
   #input-pin-vault, #pin-input {
-    height: 50px;
-    font-size: 1.8rem !important;
+    height: 48px;
+    font-size: 1.6rem !important;
+  }
+
+  .file-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 10px;
+  }
+
+  .file-grid-preview {
+    width: 75px;
+    height: 75px;
   }
 }
 
