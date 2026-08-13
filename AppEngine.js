@@ -939,7 +939,7 @@ const App = {
           document.getElementById('btn-mode-admin').classList.add('d-none');
           document.getElementById('btn-mode-public').classList.remove('d-none');
           document.getElementById('status-badge').className = 'badge bg-warning text-dark px-3 py-2 fw-bold';
-          document.getElementById('status-badge').innerText = 'Status: Mode Admin (KONTROL UTAMA)';
+          document.getElementById('status-badge').innerText = 'Status: Mode Admin';
           Swal.fire('Login Admin Sukses', 'Panel Kontrol Dibuka', 'success');
           this.vaults = res.vaults || this.vaults;
           this.renderAdminDashboard(this.vaults);
