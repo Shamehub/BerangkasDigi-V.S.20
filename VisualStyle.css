@@ -28,7 +28,9 @@ html, body {
   position: relative;
 }
 
-/* SIDEBAR STYLES */
+/* ==========================================
+   SIDEBAR STYLES
+   ========================================== */
 #sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
@@ -100,7 +102,9 @@ html, body {
   border-color: var(--gold-primary);
 }
 
-/* MAIN CONTENT STYLES & STICKY HEADER */
+/* ==========================================
+   MAIN CONTENT & HEADER NAVIGATION
+   ========================================== */
 #main-content {
   flex: 1;
   display: flex;
@@ -115,49 +119,123 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 12px 20px;
-  border-bottom: 2px solid var(--border-gold);
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(138, 109, 28, 0.08);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border-gold);
+  padding: 14px 24px;
+  box-shadow: 0 4px 15px rgba(138, 109, 28, 0.06);
   width: 100%;
 }
 
-.top-navbar-title-wrap {
+.top-navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 100%;
+}
+
+.top-navbar-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.folder-title-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
 }
 
-/* TOOLBAR AKSI FIXED OVERFLOW & FLEX WRAP */
-.vault-header-actions {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex-wrap: wrap !important;
+.folder-title-wrap h5 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.top-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.vault-header-actions .btn {
-  white-space: nowrap !important;
-  font-size: 0.85rem !important;
-  font-weight: 700 !important;
-  padding: 8px 14px !important;
-  border-radius: 10px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+/* DESIGN BUTTON PREMIUM */
+.btn-action-outline {
+  background: #ffffff;
+  border: 1.5px solid var(--gold-dark);
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
-.vault-header-actions .btn:hover {
+.btn-action-outline:hover {
+  background: var(--gold-dark);
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 10px rgba(138, 109, 28, 0.2);
 }
 
-/* CARDS & COMPONENTS */
+.btn-action-gold {
+  background: var(--gold-gradient);
+  border: none;
+  color: #1a1710;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 8px rgba(212, 175, 55, 0.3);
+}
+
+.btn-action-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(212, 175, 55, 0.4);
+}
+
+.badge-status {
+  background: #191919;
+  color: var(--gold-primary);
+  border: 1px solid var(--gold-dark);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-icon-refresh {
+  background: transparent;
+  border: 1.5px solid var(--border-gold);
+  color: var(--gold-dark);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon-refresh:hover {
+  background: var(--gold-dark);
+  color: #ffffff;
+}
+
+/* ==========================================
+   CARDS & COMPONENTS
+   ========================================== */
 .vault-card {
   background: var(--card-bg);
   border: 2px solid var(--border-gold);
@@ -193,7 +271,9 @@ html, body {
   font-weight: 800;
 }
 
-/* PINPAD STYLES */
+/* ==========================================
+   PINPAD STYLES
+   ========================================== */
 .pinpad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -262,7 +342,9 @@ html, body {
   border-radius: 14px;
 }
 
-/* MODALS & TABLES */
+/* ==========================================
+   MODALS & TABLES
+   ========================================== */
 .modal-content.dark-vault {
   background: #ffffff !important;
   border: 2px solid var(--gold-primary) !important;
@@ -331,7 +413,14 @@ html, body {
   border-radius: 8px;
 }
 
-/* FILE EXPLORER GRID VIEW STYLE */
+.btn-outline-metal:hover {
+  background: var(--gold-dark);
+  color: #ffffff;
+}
+
+/* ==========================================
+   FILE EXPLORER GRID VIEW STYLE
+   ========================================== */
 .file-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -415,11 +504,6 @@ html, body {
   display: flex;
 }
 
-.btn-outline-metal:hover {
-  background: var(--gold-dark);
-  color: #ffffff;
-}
-
 .photo-preview-container {
   overflow: hidden;
   display: flex;
@@ -443,24 +527,9 @@ html, body {
   cursor: grabbing;
 }
 
-/* PENYESUAIAN TOMBOL HEADER DESKTOP & MOBILE */
-.top-navbar .badge {
-  font-size: 0.8rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-}
-
-#btn-refresh-manual {
-  min-width: 36px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-}
-
-/* MEDIA QUERIES RESPONSIVE MOBILE (LAYAR HP) */
+/* ==========================================
+   MEDIA QUERIES RESPONSIVE MOBILE & DESKTOP
+   ========================================== */
 @media (max-width: 767.98px) {
   #sidebar {
     position: fixed;
@@ -490,41 +559,42 @@ html, body {
     display: block;
   }
 
+  /* LAYAR HP (MOBILE) ADAPTIF HEADER */
   .top-navbar {
-    padding: 10px 14px;
-    flex-wrap: wrap;
-    gap: 8px;
+    padding: 12px 16px;
   }
 
-  .status-actions-wrapper {
-    width: 100%;
-    justify-content: flex-end;
-    margin-top: 4px;
+  .top-navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
-  #status-badge {
-    font-size: 0.75rem;
-    padding: 6px 12px !important;
-  }
-
-  #btn-install-pwa {
-    font-size: 0.75rem !important;
-    padding: 6px 12px !important;
-  }
-
-  .vault-header-actions {
-    width: 100% !important;
-    display: grid !important;
+  .top-navbar-right {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px !important;
-    margin-bottom: 8px;
+    gap: 8px;
+    width: 100%;
   }
 
-  .vault-header-actions .btn {
-    width: 100% !important;
-    justify-content: center !important;
-    font-size: 0.8rem !important;
-    padding: 8px 10px !important;
+  .btn-action-outline, 
+  .btn-action-gold {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .badge-status {
+    grid-column: span 1;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .btn-icon-refresh {
+    width: 100%;
+    height: 100%;
+    min-height: 36px;
   }
 
   .pin-btn {
