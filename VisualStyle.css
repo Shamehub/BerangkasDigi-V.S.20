@@ -1,11 +1,12 @@
 :root {
-  --bg-gold-light: #f7f3e8;
-  --gold-primary: #d4af37;
+  --bg-gold-light: #f5f0e1;
+  --gold-primary: #e0ab2b;
   --gold-dark: #8a6d1c;
+  --gold-button: #ffc107;
   --gold-gradient: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
   --card-bg: #ffffff;
-  --sidebar-bg: #1e1910;
-  --border-gold: #e2c97c;
+  --sidebar-bg: #1c1813;
+  --border-gold: #c2a052;
   --text-dark: #1a1710;
   --sidebar-width: 280px;
 }
@@ -15,9 +16,10 @@ html, body {
   color: var(--text-dark) !important;
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
-  /* Mematikan fitur pull-to-refresh dan efek bounce di browser mobile */
   overscroll-behavior-y: none;
   touch-action: pan-x pan-y;
+  margin: 0;
+  padding: 0;
 }
 
 #app-wrapper {
@@ -28,53 +30,57 @@ html, body {
   position: relative;
 }
 
-/* SIDEBAR STYLES */
+/* ===================================================
+   SIDEBAR STYLES (PERSIS REFERENSI DESKTOP)
+   =================================================== */
 #sidebar {
   width: var(--sidebar-width);
   background: var(--sidebar-bg);
-  border-right: 2px solid var(--gold-dark);
+  border-right: 1px solid rgba(212, 175, 55, 0.2);
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1050;
   height: 100%;
   flex-shrink: 0;
+  justify-content: space-between;
 }
 
 .sidebar-brand {
   padding: 24px 20px;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 12px;
 }
 
 .sidebar-brand i {
   font-size: 1.8rem;
-  color: var(--gold-primary);
+  color: var(--gold-button);
 }
 
 .sidebar-brand span {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: #ffffff;
 }
 
 .nav-menu {
-  padding: 20px 12px;
+  padding: 20px 14px;
   flex: 1;
   overflow-y: auto;
 }
 
 .nav-menu .menu-label {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--gold-primary);
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 12px;
-  padding-left: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  padding-left: 8px;
 }
 
 .nav-item-btn {
@@ -82,11 +88,11 @@ html, body {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 16px;
+  padding: 12px 18px;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 10px;
-  color: #d8ceb9;
+  border-radius: 12px;
+  color: #e2d9c8;
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 8px;
@@ -94,70 +100,280 @@ html, body {
   transition: all 0.2s ease;
 }
 
+/* Active State / Outline Kuning Seperti di Gambar */
+.nav-item-btn.active,
 .nav-item-btn:hover {
-  background: rgba(212, 175, 55, 0.15);
+  background: transparent;
   color: #ffffff;
-  border-color: var(--gold-primary);
+  border: 1.5px solid var(--gold-button);
 }
 
-/* MAIN CONTENT STYLES & STICKY HEADER */
+/* Mode Admin di Bagian Bawah Sidebar */
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.sidebar-footer .nav-item-btn {
+  margin-bottom: 0;
+  border: 1.5px solid var(--gold-button);
+  justify-content: center;
+}
+
+/* ===================================================
+   MAIN CONTENT & HEADER STYLES
+   =================================================== */
 #main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: linear-gradient(180deg, #f5ebd3 0%, #f7f3e8 100%);
+  background: #f5eedc;
   min-width: 0;
   overscroll-behavior-y: none;
 }
 
+/* Top Navbar */
 .top-navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 12px 20px;
-  border-bottom: 2px solid var(--border-gold);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(138, 109, 28, 0.08);
+  padding: 16px 24px;
+  border-bottom: 1.5px solid #e3d5b8;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .top-navbar-title-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
 }
 
-/* TOOLBAR AKSI FIXED OVERFLOW & FLEX WRAP */
+.top-navbar-title-wrap i.fa-folder,
+.top-navbar-title-wrap .folder-icon {
+  color: #f3b11b;
+  font-size: 2rem;
+}
+
+.top-navbar-title-wrap h4,
+.top-navbar-title-wrap .title-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2b271d;
+  margin: 0;
+}
+
+/* Tombol Menu Hamburger untuk Mobile & Tablet */
+#btn-toggle-sidebar {
+  display: none;
+  background: #ffffff;
+  border: 2px solid #8a6d1c;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 1.3rem;
+  color: #8a6d1c;
+  cursor: pointer;
+}
+
+/* ACTION BUTTONS (Atas Kanan) */
 .vault-header-actions {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
   flex-wrap: wrap !important;
   justify-content: flex-end;
 }
 
+/* Desain Dasar Semua Tombol Action Header */
 .vault-header-actions .btn {
   white-space: nowrap !important;
-  font-size: 0.85rem !important;
+  font-size: 0.88rem !important;
   font-weight: 700 !important;
-  padding: 8px 14px !important;
-  border-radius: 10px !important;
+  padding: 9px 16px !important;
+  border-radius: 12px !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
 }
 
-.vault-header-actions .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+/* Outline Buttons (Utama, Pengaturan, Tambah Folder) */
+.vault-header-actions .btn-outline,
+.vault-header-actions .btn-outline-dark,
+.vault-header-actions .btn-secondary {
+  background: #ffffff !important;
+  border: 2px solid #8a6d1c !important;
+  color: #8a6d1c !important;
 }
 
-/* CARDS & COMPONENTS */
+/* Solid Yellow Buttons (Unggah File/Folder, Install Aplikasi) */
+.vault-header-actions .btn-warning,
+.vault-header-actions .btn-gold,
+.vault-header-actions .btn-primary {
+  background: #f7bd1e !important;
+  border: 1px solid #e0a800 !important;
+  color: #1a1710 !important;
+}
+
+/* Dark Button (Status: Publik) */
+.vault-header-actions .btn-dark {
+  background: #1c2226 !important;
+  border: 1px solid #1c2226 !important;
+  color: #ffffff !important;
+}
+
+/* Refresh Button (Icon Bulat/Kotak Border) */
+.vault-header-actions .btn-refresh {
+  background: #ffffff !important;
+  border: 2px solid #8a6d1c !important;
+  color: #1a1710 !important;
+  padding: 9px 12px !important;
+}
+
+/* ===================================================
+   SEARCH BAR & DAFTAR BERKAS (PERSIS REFERENSI)
+   =================================================== */
+.content-body {
+  padding: 24px;
+}
+
+/* Search Bar Hitam Presisi Gambar */
+.search-container {
+  width: 100%;
+  max-width: 550px;
+  margin-bottom: 24px;
+}
+
+.search-input-group {
+  display: flex;
+  background: #252b30;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-input-group .search-icon {
+  background: transparent;
+  color: #f7bd1e;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.search-input-group input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 12px 16px 12px 0;
+  width: 100%;
+  outline: none;
+}
+
+.search-input-group input::placeholder {
+  color: #a0a5a8;
+}
+
+/* Judul Sub-Section */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f7bd1e;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+/* ===================================================
+   FILE GRID LAYOUT (PDF ICON & GRID DISPLAY)
+   =================================================== */
+.file-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 Kolom presisi seperti tampilan Desktop Anda */
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.file-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+}
+
+.file-grid-item:hover {
+  background-color: rgba(212, 175, 55, 0.12);
+  border-color: var(--border-gold);
+}
+
+.file-grid-preview {
+  width: 110px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: #e8ded0; /* Kartu abu-abu lembut pembungkus PDF */
+}
+
+.file-grid-preview img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.file-grid-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1710;
+  text-align: center;
+  width: 100%;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  direction: rtl; /* Untuk kompatibilitas teks Arab sesuai gambar */
+}
+
+.file-grid-actions {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.file-grid-item:hover .file-grid-actions {
+  display: flex;
+}
+
+/* CARDS & OTHER COMPONENTS */
 .vault-card {
   background: var(--card-bg);
   border: 2px solid var(--border-gold);
@@ -231,26 +447,6 @@ html, body {
   background: var(--gold-dark);
   color: #ffffff;
   transform: scale(0.96);
-}
-
-.pin-btn.text-danger {
-  color: #dc3545 !important;
-  border-color: #dc3545;
-}
-
-.pin-btn.text-danger:hover {
-  background: #dc3545;
-  color: #ffffff !important;
-}
-
-.pin-btn.text-success {
-  color: #198754 !important;
-  border-color: #198754;
-}
-
-.pin-btn.text-success:hover {
-  background: #198754;
-  color: #ffffff !important;
 }
 
 #input-pin-vault, #pin-input {
@@ -331,90 +527,6 @@ html, body {
   border-radius: 8px;
 }
 
-/* FILE EXPLORER GRID VIEW STYLE */
-.file-grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 16px;
-  padding: 10px;
-}
-
-.file-grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 6px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  position: relative;
-  background: transparent;
-}
-
-.file-grid-item:hover {
-  background-color: rgba(212, 175, 55, 0.15);
-  border-color: var(--border-gold);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.file-grid-preview {
-  width: 90px;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.file-grid-preview img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-
-.file-grid-preview i {
-  font-size: 3.5rem;
-}
-
-.file-grid-title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  text-align: center;
-  width: 100%;
-  line-height: 1.25;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-word;
-}
-
-.file-grid-actions {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  display: none;
-  flex-direction: column;
-  gap: 3px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 3px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-
-.file-grid-item:hover .file-grid-actions {
-  display: flex;
-}
-
 .btn-outline-metal:hover {
   background: var(--gold-dark);
   color: #ffffff;
@@ -443,8 +555,19 @@ html, body {
   cursor: grabbing;
 }
 
-/* MEDIA QUERIES RESPONSIVE */
-@media (max-width: 767.98px) {
+/* ===================================================
+   RESPONSIVE MEDIA QUERIES (TABLET & MOBILE HP)
+   =================================================== */
+
+/* --- TABLET (Lebar Layar 768px - 1024px) --- */
+@media (max-width: 1024px) {
+  .file-grid-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 item per baris sesuai gambar Tablet.png */
+  }
+}
+
+/* --- MOBILE & TABLET KECIL (Lebar Layar dibawah 991.98px) --- */
+@media (max-width: 991.98px) {
   #sidebar {
     position: fixed;
     left: -280px;
@@ -455,6 +578,12 @@ html, body {
 
   #sidebar.show-sidebar {
     left: 0;
+  }
+
+  #btn-toggle-sidebar {
+    display: inline-flex; /* Menampilkan tombol hamburger (≡) sesuai contoh HP & Tablet */
+    align-items: center;
+    justify-content: center;
   }
 
   .sidebar-overlay {
@@ -472,21 +601,36 @@ html, body {
   .sidebar-overlay.active {
     display: block;
   }
+}
 
+/* --- MOBILE / HP (Lebar Layar dibawah 767.98px) --- */
+@media (max-width: 767.98px) {
   .top-navbar {
-    padding: 10px 14px;
+    padding: 12px 16px;
   }
 
   .vault-header-actions {
     width: 100% !important;
     justify-content: flex-start !important;
+    gap: 8px !important;
   }
 
+  /* Penyesuaian Tombol 2 Kolom Pada Tampilan HP (HP.png) */
   .vault-header-actions .btn {
-    flex: 1 1 auto;
+    flex: 1 1 calc(50% - 8px);
     justify-content: center;
     font-size: 0.8rem !important;
-    padding: 7px 10px !important;
+    padding: 8px 10px !important;
+  }
+
+  .file-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom pada perangkat HP */
+    gap: 12px;
+  }
+
+  .file-grid-preview {
+    width: 90px;
+    height: 100px;
   }
 
   .pin-btn {
@@ -501,7 +645,7 @@ html, body {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .sidebar-overlay {
     display: none !important;
   }
