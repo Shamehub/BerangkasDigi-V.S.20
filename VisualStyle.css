@@ -443,7 +443,7 @@ html, body {
   cursor: grabbing;
 }
 
-/* PENYESUAIAN TOMBOL HEADER */
+/* PENYESUAIAN TOMBOL HEADER DESKTOP & MOBILE */
 .top-navbar .badge {
   font-size: 0.8rem;
   font-weight: 700;
@@ -460,7 +460,7 @@ html, body {
   border-radius: 8px;
 }
 
-/* MEDIA QUERIES RESPONSIVE */
+/* MEDIA QUERIES RESPONSIVE MOBILE (LAYAR HP) */
 @media (max-width: 767.98px) {
   #sidebar {
     position: fixed;
@@ -496,32 +496,35 @@ html, body {
     gap: 8px;
   }
 
-  .top-navbar > div:last-child {
+  .status-actions-wrapper {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-top: 4px;
   }
 
   #status-badge {
     font-size: 0.75rem;
-    padding: 6px 10px !important;
+    padding: 6px 12px !important;
   }
 
   #btn-install-pwa {
     font-size: 0.75rem !important;
-    padding: 6px 10px !important;
+    padding: 6px 12px !important;
   }
 
   .vault-header-actions {
     width: 100% !important;
-    justify-content: flex-start !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px !important;
+    margin-bottom: 8px;
   }
 
   .vault-header-actions .btn {
-    flex: 1 1 auto;
-    justify-content: center;
+    width: 100% !important;
+    justify-content: center !important;
     font-size: 0.8rem !important;
-    padding: 7px 10px !important;
+    padding: 8px 10px !important;
   }
 
   .pin-btn {
