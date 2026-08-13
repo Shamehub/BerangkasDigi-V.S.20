@@ -13,10 +13,9 @@
 <body>
 
   <div id="app-wrapper">
-    <!-- Overlay Layar Gelap untuk Tampilan Mobile -->
     <div class="sidebar-overlay" id="sidebar-overlay" onclick="App.toggleSidebar()"></div>
 
-    <!-- SIDEBAR NAVIGATION -->
+    <!-- SIDEBAR -->
     <aside id="sidebar">
       <div class="sidebar-brand">
         <div class="d-flex align-items-center gap-2">
@@ -43,41 +42,41 @@
       </div>
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- MAIN CONTENT -->
     <main id="main-content">
       <header class="top-navbar">
         <div class="top-navbar-container">
-          <!-- Sisi Kiri: Toggle Mobile & Judul Folder -->
+          <!-- Kiri: Menu Mobile & Judul -->
           <div class="top-navbar-left">
-            <button class="btn btn-outline-metal d-md-none me-2" onclick="App.toggleSidebar()">
+            <button class="btn btn-action-outline d-md-none p-2" onclick="App.toggleSidebar()">
               <i class="fas fa-bars"></i>
             </button>
             <div class="folder-title-wrap">
-              <i class="fas fa-folder text-warning fs-4"></i>
-              <h5 class="m-0 fw-bold text-dark text-truncate" id="header-title">Haliem</h5>
+              <i class="fas fa-folder text-warning fs-5"></i>
+              <h5 id="header-title">Haliem</h5>
             </div>
           </div>
           
-          <!-- Sisi Kanan: Action Buttons & Status Badge -->
+          <!-- Kanan: Tombol Aksi -->
           <div class="top-navbar-right">
             <button class="btn btn-action-outline" onclick="App.navigateToHome()">
-              <i class="fas fa-arrow-left me-1"></i> Utama
+              <i class="fas fa-arrow-left"></i> Utama
             </button>
             
             <button class="btn btn-action-outline" onclick="App.openVaultSettings()">
-              <i class="fas fa-gear me-1"></i> Pengaturan
+              <i class="fas fa-gear"></i> Pengaturan
             </button>
 
             <button class="btn btn-action-outline" onclick="App.openCreateFolderModal()">
-              <i class="fas fa-folder-plus me-1"></i> Tambah Folder
+              <i class="fas fa-folder-plus"></i> Tambah Folder
             </button>
 
             <button class="btn btn-action-gold" onclick="App.openUploadModal()">
-              <i class="fas fa-cloud-upload-alt me-1"></i> Unggah File/Folder
+              <i class="fas fa-cloud-upload-alt"></i> Unggah
             </button>
 
             <span class="badge badge-status" id="status-badge">
-              <i class="fas fa-circle text-success me-1"></i> Status: Publik
+              <i class="fas fa-circle text-success me-1"></i> Publik
             </span>
 
             <button id="btn-refresh-manual" class="btn btn-icon-refresh" onclick="App.handleManualRefresh()" title="Refresh Data">
@@ -235,7 +234,7 @@
     </div>
   </div>
 
-  <!-- THIRD-PARTY LIBRARIES & APP ENGINE -->
+  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="AppEngine.js"></script>
