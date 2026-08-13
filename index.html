@@ -17,11 +17,11 @@
 
     <aside id="sidebar">
       <div class="sidebar-brand">
-        <div class="d-flex align-items-center gap-2 text-truncate">
+        <div class="d-flex align-items-center gap-2">
           <i class="fas fa-vault"></i>
-          <span class="text-truncate">BERANGKAS V.S20</span>
+          <span>BERANGKAS V.S20</span>
         </div>
-        <button class="btn btn-sm text-white d-md-none" onclick="App.toggleSidebar()" aria-label="Tutup Sidebar">
+        <button class="btn btn-sm text-white d-md-none" onclick="App.toggleSidebar()">
           <i class="fas fa-times fa-lg"></i>
         </button>
       </div>
@@ -31,7 +31,7 @@
         <div id="sidebar-vault-links"></div>
       </div>
 
-      <div class="p-3 border-top border-secondary mt-auto">
+      <div class="p-3 border-top border-secondary">
         <button id="btn-mode-admin" class="btn btn-outline-metal w-100 btn-sm" onclick="App.openAdminModal()">
           <i class="fas fa-user-shield me-2"></i> Mode Admin
         </button>
@@ -43,58 +43,58 @@
 
     <main id="main-content">
       <header class="top-navbar">
-        <div class="d-flex align-items-center gap-2 gap-md-3 min-w-0">
-          <button class="btn btn-outline-metal d-md-none p-2 flex-shrink-0" onclick="App.toggleSidebar()" aria-label="Buka Menu">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-metal d-md-none p-2" onclick="App.toggleSidebar()">
             <i class="fas fa-bars fa-lg"></i>
           </button>
-          <h5 class="m-0 fw-bold text-dark text-truncate" id="header-title">
+          <h5 class="m-0 fw-bold text-dark" id="header-title">
             <i class="fas fa-shield-halved text-warning me-2"></i> DASBOR BERANGKAS PUBLIK
           </h5>
         </div>
         
-        <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-auto">
+        <div class="d-flex align-items-center gap-2">
           <!-- Tombol Refresh Manual -->
           <button type="button" id="btn-refresh-manual" class="btn btn-sm btn-outline-metal" onclick="App.handleManualRefresh()" title="Refresh Berkas / Data">
             <i class="fas fa-rotate-right" style="pointer-events: none;"></i>
           </button>
 
-          <button id="btn-install-pwa" class="btn btn-sm btn-gold d-none text-nowrap" onclick="App.installPWA()">
+          <button id="btn-install-pwa" class="btn btn-sm btn-gold d-none" onclick="App.installPWA()">
             <i class="fas fa-download me-1"></i> Install Aplikasi
           </button>
 
-          <span class="badge bg-dark border border-secondary text-warning px-3 py-2 text-nowrap" id="status-badge">
+          <span class="badge bg-dark border border-secondary text-warning px-3 py-2" id="status-badge">
             Status: Publik
           </span>
         </div>
       </header>
 
-      <div class="p-3 p-md-4" id="view-container"></div>
+      <div class="p-4" id="view-container"></div>
     </main>
   </div>
 
-  <div class="modal fade" id="modalPin" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalPin" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4 text-center">
         <h5 class="fw-bold text-warning mb-1" id="pin-modal-title">Akses Berangkas</h5>
         <p class="text-muted small mb-3">Masukkan 6 digit kode PIN Keamanan</p>
         
-        <input type="password" id="input-pin-vault" maxlength="6" inputmode="numeric" class="form-control form-control-dark text-center fs-3 fw-bold mb-3 text-warning" style="letter-spacing: 6px;" autocomplete="off">
+        <input type="password" id="input-pin-vault" maxlength="6" inputmode="numeric" class="form-control form-control-dark text-center fs-3 fw-bold mb-3 text-warning" style="letter-spacing: 6px;">
 
         <div class="pinpad-grid mb-3">
-          <button type="button" class="pin-btn" onclick="App.pressPin('1')">1</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('2')">2</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('3')">3</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('4')">4</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('5')">5</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('6')">6</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('7')">7</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('8')">8</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('9')">9</button>
-          <button type="button" class="pin-btn text-danger" onclick="App.clearPin()">C</button>
-          <button type="button" class="pin-btn" onclick="App.pressPin('0')">0</button>
-          <button type="button" class="pin-btn text-success" onclick="App.submitPin()"><i class="fas fa-check"></i></button>
+          <button class="pin-btn" onclick="App.pressPin('1')">1</button>
+          <button class="pin-btn" onclick="App.pressPin('2')">2</button>
+          <button class="pin-btn" onclick="App.pressPin('3')">3</button>
+          <button class="pin-btn" onclick="App.pressPin('4')">4</button>
+          <button class="pin-btn" onclick="App.pressPin('5')">5</button>
+          <button class="pin-btn" onclick="App.pressPin('6')">6</button>
+          <button class="pin-btn" onclick="App.pressPin('7')">7</button>
+          <button class="pin-btn" onclick="App.pressPin('8')">8</button>
+          <button class="pin-btn" onclick="App.pressPin('9')">9</button>
+          <button class="pin-btn text-danger" onclick="App.clearPin()">C</button>
+          <button class="pin-btn" onclick="App.pressPin('0')">0</button>
+          <button class="pin-btn text-success" onclick="App.submitPin()"><i class="fas fa-check"></i></button>
         </div>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
@@ -111,25 +111,25 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalAdmin" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalAdmin" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
         <h5 class="fw-bold text-warning text-center mb-3"><i class="fas fa-lock me-2"></i>Otorisasi Admin</h5>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="admin-user">Username</label>
-          <input type="text" id="admin-user" class="form-control form-control-dark" autocomplete="username">
+          <label class="form-label text-muted small">Username</label>
+          <input type="text" id="admin-user" class="form-control form-control-dark">
         </div>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="admin-pass">Password</label>
-          <input type="password" id="admin-pass" class="form-control form-control-dark" autocomplete="current-password">
+          <label class="form-label text-muted small">Password</label>
+          <input type="password" id="admin-pass" class="form-control form-control-dark">
         </div>
-        <button type="button" class="btn btn-gold w-100 mb-2" onclick="App.submitAdminLogin()">Login Kontrol Admin</button>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-gold w-100 mb-2" onclick="App.submitAdminLogin()">Login Kontrol Admin</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="modalUpload" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalUpload" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content dark-vault p-4">
         <h5 class="fw-bold text-warning mb-3"><i class="fas fa-cloud-upload-alt me-2"></i>Unggah Dokumen / Folder</h5>
@@ -146,65 +146,65 @@
         </div>
 
         <div class="mb-3" id="wrapper-file-input">
-          <label class="form-label text-muted small" for="file-input">Pilih Berkas (Bisa pilih banyak file)</label>
+          <label class="form-label text-muted small">Pilih Berkas (Bisa pilih banyak file)</label>
           <input type="file" id="file-input" class="form-control form-control-dark" multiple>
         </div>
 
         <div class="mb-3 d-none" id="wrapper-folder-input">
-          <label class="form-label text-muted small" for="folder-input">Pilih Folder dari Komputer/HP</label>
+          <label class="form-label text-muted small">Pilih Folder dari Komputer/HP</label>
           <input type="file" id="folder-input" class="form-control form-control-dark" webkitdirectory directory multiple>
           <div class="form-text text-muted small mt-1">Seluruh file dan sub-folder di dalamnya akan diunggah sesuai struktur.</div>
         </div>
 
-        <button type="button" class="btn btn-gold w-100 mb-2" onclick="App.execUpload()">Mulai Unggah</button>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-gold w-100 mb-2" onclick="App.execUpload()">Mulai Unggah</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="modalCreateFolder" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalCreateFolder" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
         <h5 class="fw-bold text-warning mb-3"><i class="fas fa-folder-plus me-2"></i>Buat Folder Baru</h5>
         <input type="text" id="folder-name-input" class="form-control form-control-dark mb-3" placeholder="Nama folder...">
-        <button type="button" class="btn btn-gold w-100 mb-2" onclick="App.execCreateFolder()">Buat Folder</button>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-gold w-100 mb-2" onclick="App.execCreateFolder()">Buat Folder</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="modalCreateVault" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalCreateVault" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
         <h5 class="fw-bold text-warning mb-3"><i class="fas fa-plus-circle me-2"></i>Tambah Menu Berangkas</h5>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="new-vault-name">Nama Menu Berangkas</label>
+          <label class="form-label text-muted small">Nama Menu Berangkas</label>
           <input type="text" id="new-vault-name" class="form-control form-control-dark">
         </div>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="new-vault-pin">PIN Akses (6 Digit)</label>
-          <input type="password" id="new-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark" autocomplete="off">
+          <label class="form-label text-muted small">PIN Akses (6 Digit)</label>
+          <input type="password" id="new-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark">
         </div>
-        <button type="button" class="btn btn-gold w-100 mb-2" onclick="App.execCreateVault()">Tambah Berangkas</button>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-gold w-100 mb-2" onclick="App.execCreateVault()">Tambah Berangkas</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="modalVaultSettings" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalVaultSettings" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content dark-vault p-4">
         <h5 class="fw-bold text-warning mb-3"><i class="fas fa-gear me-2"></i>Pengaturan Berangkas</h5>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="setting-vault-name">Nama Berangkas</label>
+          <label class="form-label text-muted small">Nama Berangkas</label>
           <input type="text" id="setting-vault-name" class="form-control form-control-dark">
         </div>
         <div class="mb-3">
-          <label class="form-label text-muted small" for="setting-vault-pin">PIN Baru (6 Digit)</label>
-          <input type="password" id="setting-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark" placeholder="Kosongkan jika tidak diubah" autocomplete="off">
+          <label class="form-label text-muted small">PIN Baru (6 Digit)</label>
+          <input type="password" id="setting-vault-pin" maxlength="6" inputmode="numeric" class="form-control form-control-dark" placeholder="Kosongkan jika tidak diubah">
         </div>
-        <button type="button" class="btn btn-gold w-100 mb-2" onclick="App.execUpdateVaultSettings()">Simpan Perubahan</button>
-        <button type="button" class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-gold w-100 mb-2" onclick="App.execUpdateVaultSettings()">Simpan Perubahan</button>
+        <button class="btn btn-outline-metal btn-sm w-100" data-bs-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
