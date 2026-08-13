@@ -51,11 +51,13 @@ const App = {
   },
 
   handleManualRefresh: function() {
-    console.log("Tombol refresh diklik!");
+    console.log("Tombol refresh diklik!"); // Untuk tracking di console
 
+    // Efek animasi putar pada icon tombol
     const btnIcon = document.querySelector('#btn-refresh-manual i');
     if (btnIcon) btnIcon.classList.add('fa-spin');
 
+    // Menggunakan variabel eksplisit App untuk keamanan context 'this'
     const self = App;
 
     try {
@@ -76,6 +78,7 @@ const App = {
         Swal.fire('Error', 'Gagal memuat ulang: ' + err.message, 'error');
       }
     } finally {
+      // Hentikan animasi putar icon setelah 1 detik
       setTimeout(() => {
         if (btnIcon) btnIcon.classList.remove('fa-spin');
       }, 1000);
@@ -112,8 +115,8 @@ const App = {
   toggleSidebar: function() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
-    if (sidebar) sidebar.classList.toggle('show-sidebar');
-    if (overlay) overlay.classList.toggle('active');
+    sidebar.classList.toggle('show-sidebar');
+    overlay.classList.toggle('active');
   },
 
   closeSidebarMobile: function() {
@@ -173,8 +176,7 @@ const App = {
               '<span class="text-truncate">' + v.nama + '</span>' +
               '</button>';
     });
-    const target = document.getElementById('sidebar-vault-links');
-    if (target) target.innerHTML = html;
+    document.getElementById('sidebar-vault-links').innerHTML = html;
   },
 
   renderHome: function() {
@@ -182,39 +184,35 @@ const App = {
     this.currentFolderId = null;
     this.folderStack = [];
 
-    const headerTitle = document.getElementById('header-title');
-    if (headerTitle) {
-      headerTitle.innerHTML = 
-        '<div class="top-navbar-title-wrap">' +
-          '<i class="fas fa-shield-halved text-warning fa-lg"></i>' +
-          '<span class="fw-bold fs-5 text-dark text-truncate">DASBOR BERANGKAS PUBLIK</span>' +
-        '</div>';
-    }
+    document.getElementById('header-title').innerHTML = 
+      '<div class="top-navbar-title-wrap">' +
+        '<i class="fas fa-shield-halved text-warning fa-lg"></i>' +
+        '<span class="fw-bold fs-5 text-dark text-truncate">DASBOR BERANGKAS PUBLIK</span>' +
+      '</div>';
     
-    let html = '<div class="row g-4 mb-4 p-2 p-md-3">';
+    let html = '<div class="row g-4 mb-4 p-3 p-md-4">';
     this.vaults.forEach(v => {
       const badgeHtml = !v.hasPin
         ? '<span class="badge bg-success text-light">Publik (Bebas Akses)</span>'
         : '<span class="badge bg-dark border border-secondary text-warning">Terkunci (PIN 6 Digit)</span>';
       const iconName = v.icon || 'fa-vault';
 
-      html += '<div class="col-12 col-sm-6 col-lg-3">' +
+      html += '<div class="col-md-6 col-lg-3">' +
               '<div class="vault-card" onclick="App.openPinModal(\'' + v.id + '\')">' +
               '<div class="icon-box"><i class="fas ' + iconName + '"></i></div>' +
-              '<h6 class="fw-bold text-dark mb-2 text-truncate">' + v.nama + '</h6>' +
+              '<h6 class="fw-bold text-dark mb-2">' + v.nama + '</h6>' +
               badgeHtml +
               '</div></div>';
     });
 
     html += '</div>' +
-            '<div class="mx-2 mx-md-3 p-4 p-md-5 text-center dark-vault rounded-4 border border-secondary">' +
+            '<div class="mx-3 mx-md-4 p-5 text-center dark-vault rounded-4 border border-secondary">' +
             '<i class="fas fa-lock-keyhole fa-4x text-warning mb-3"></i>' +
             '<h4 class="fw-bold text-dark">Sistem Keamanan Berangkas Terenkripsi</h4>' +
             '<p class="text-muted">Pilih berangkas dari sidebar atau kartu di atas untuk membuka dokumen aman Anda.</p>' +
             '</div>';
 
-    const viewContainer = document.getElementById('view-container');
-    if (viewContainer) viewContainer.innerHTML = html;
+    document.getElementById('view-container').innerHTML = html;
   },
 
   openPinModal: function(vaultId) {
@@ -300,19 +298,16 @@ const App = {
          '<button class="btn btn-gold" onclick="App.modalUploadInst.show()"><i class="fas fa-cloud-arrow-up"></i> Unggah File/Folder</button>' +
       '</div>';
 
-    const headerTitle = document.getElementById('header-title');
-    if (headerTitle) {
-      headerTitle.innerHTML = 
-        '<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center w-100 gap-2 overflow-hidden">' +
-          '<div class="top-navbar-title-wrap text-truncate me-2">' +
-            '<i class="fas fa-folder-open text-warning fa-lg flex-shrink-0"></i>' +
-            '<span class="fw-bold fs-5 text-dark text-truncate">' + currentFolder.name + '</span>' +
-          '</div>' +
-          actionToolbar +
-        '</div>';
-    }
+    document.getElementById('header-title').innerHTML = 
+      '<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center w-100 gap-2 overflow-hidden">' +
+        '<div class="top-navbar-title-wrap text-truncate me-2">' +
+          '<i class="fas fa-folder-open text-warning fa-lg flex-shrink-0"></i>' +
+          '<span class="fw-bold fs-5 text-dark text-truncate">' + currentFolder.name + '</span>' +
+        '</div>' +
+        actionToolbar +
+      '</div>';
 
-    let html = '<div class="p-2 p-md-3">' +
+    let html = '<div class="p-3 p-md-4">' +
                  '<div class="row mb-3">' +
                    '<div class="col-12 col-md-6">' +
                      '<div class="input-group">' +
@@ -329,8 +324,7 @@ const App = {
                  '</div>' +
                '</div>';
 
-    const viewContainer = document.getElementById('view-container');
-    if (viewContainer) viewContainer.innerHTML = html;
+    document.getElementById('view-container').innerHTML = html;
     this.loadFolderItems(currentFolder.id);
   },
 
@@ -342,8 +336,7 @@ const App = {
           this.updatePhotoGallery();
           this.renderTableItems(this.currentItems);
         } else {
-          const target = document.getElementById('file-list-target');
-          if (target) target.innerHTML = '<div class="text-center py-4 text-danger">Gagal memuat isi folder.</div>';
+          document.getElementById('file-list-target').innerHTML = '<div class="text-center py-4 text-danger">Gagal memuat isi folder.</div>';
         }
       });
   },
@@ -367,11 +360,8 @@ const App = {
   },
 
   renderTableItems: function(items) {
-    const target = document.getElementById('file-list-target');
-    if (!target) return;
-
     if (!items || items.length === 0) {
-      target.innerHTML = 
+      document.getElementById('file-list-target').innerHTML = 
         '<div class="text-center py-5 text-muted"><i class="fas fa-folder-open fa-3x mb-3 text-secondary"></i><br>Tidak ada file atau folder yang ditemukan.</div>';
       return;
     }
@@ -439,7 +429,7 @@ const App = {
     });
 
     gridHtml += '</div>';
-    target.innerHTML = gridHtml;
+    document.getElementById('file-list-target').innerHTML = gridHtml;
   },
 
   openPhotoPreview: function(fileId) {
@@ -454,7 +444,7 @@ const App = {
 
   getModalBodyContainer: function(previewModalEl) {
     let modalBody = document.getElementById('preview-modal-body');
-    if (!modalBody && previewModalEl) {
+    if (!modalBody) {
       modalBody = previewModalEl.querySelector('.modal-body');
     }
     return modalBody;
@@ -603,17 +593,15 @@ const App = {
     const isGalleryDisabled = this.photoGallery.length <= 1 ? 'disabled' : '';
     const fastUrl = 'https://drive.google.com/thumbnail?id=' + photo.id + '&sz=w800';
 
-    if (modalBody) {
-      modalBody.innerHTML = '<div class="position-relative text-center d-flex align-items-center justify-content-center bg-black rounded-3 overflow-hidden" style="min-height: 300px; touch-action: none;">' +
-                            '<button type="button" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y opacity-75 ms-2 rounded-circle" style="z-index: 10; width: 42px; height: 42px;" onclick="App.prevPhoto()" ' + isGalleryDisabled + '>' +
-                            '<i class="fas fa-chevron-left text-warning"></i></button>' +
-                            '<div id="lightbox-loader" class="position-absolute top-0 start-50 translate-middle-x mt-2 badge bg-dark text-warning border border-warning opacity-75" style="z-index:5;">' +
-                            '<i class="fas fa-spinner fa-spin me-1"></i>Memuat HD...</div>' +
-                            '<img id="lightbox-img-element" src="' + fastUrl + '" class="img-fluid rounded" style="max-height: 75vh; object-fit: contain; cursor: grab;" alt="' + this.escapeQuotes(photo.name) + '" />' +
-                            '<button type="button" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y opacity-75 me-2 rounded-circle" style="z-index: 10; width: 42px; height: 42px;" onclick="App.nextPhoto()" ' + isGalleryDisabled + '>' +
-                            '<i class="fas fa-chevron-right text-warning"></i></button>' +
-                            '</div>';
-    }
+    modalBody.innerHTML = '<div class="position-relative text-center d-flex align-items-center justify-content-center bg-black rounded-3 overflow-hidden" style="min-height: 300px; touch-action: none;">' +
+                          '<button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y opacity-75 ms-2 rounded-circle" style="z-index: 10; width: 42px; height: 42px;" onclick="App.prevPhoto()" ' + isGalleryDisabled + '>' +
+                          '<i class="fas fa-chevron-left text-warning"></i></button>' +
+                          '<div id="lightbox-loader" class="position-absolute top-0 start-50 translate-middle-x mt-2 badge bg-dark text-warning border border-warning opacity-75" style="z-index:5;">' +
+                          '<i class="fas fa-spinner fa-spin me-1"></i>Memuat HD...</div>' +
+                          '<img id="lightbox-img-element" src="' + fastUrl + '" class="img-fluid rounded" style="max-height: 75vh; object-fit: contain; cursor: grab;" alt="' + this.escapeQuotes(photo.name) + '" />' +
+                          '<button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y opacity-75 me-2 rounded-circle" style="z-index: 10; width: 42px; height: 42px;" onclick="App.nextPhoto()" ' + isGalleryDisabled + '>' +
+                          '<i class="fas fa-chevron-right text-warning"></i></button>' +
+                          '</div>';
 
     if (this.modalPreviewInst) {
       this.modalPreviewInst.show();
@@ -661,9 +649,7 @@ const App = {
 
     const modalBody = this.getModalBodyContainer(previewModalEl);
     const embedUrl = 'https://drive.google.com/file/d/' + fileId + '/preview';
-    if (modalBody) {
-      modalBody.innerHTML = '<iframe id="preview-frame" src="' + embedUrl + '" style="width: 100%; height: 500px; border: none;" class="rounded-3"></iframe>';
-    }
+    modalBody.innerHTML = '<iframe id="preview-frame" src="' + embedUrl + '" style="width: 100%; height: 500px; border: none;" class="rounded-3"></iframe>';
 
     if (this.modalPreviewInst) {
       this.modalPreviewInst.show();
@@ -685,14 +671,12 @@ const App = {
   },
 
   openCreateFolderModal: function() {
-    const folderInput = document.getElementById('folder-name-input');
-    if (folderInput) folderInput.value = '';
+    document.getElementById('folder-name-input').value = '';
     this.modalFolderInst.show();
   },
 
   execCreateFolder: function() {
-    const folderInput = document.getElementById('folder-name-input');
-    const folderName = folderInput ? folderInput.value.trim() : '';
+    const folderName = document.getElementById('folder-name-input').value.trim();
     if (!folderName) {
       Swal.fire('Peringatan', 'Masukkan nama folder!', 'warning');
       return;
@@ -756,11 +740,11 @@ const App = {
     const folderWrapper = document.getElementById('wrapper-folder-input');
     
     if (mode === 'folder') {
-      if (fileWrapper) fileWrapper.classList.add('d-none');
-      if (folderWrapper) folderWrapper.classList.remove('d-none');
+      fileWrapper.classList.add('d-none');
+      folderWrapper.classList.remove('d-none');
     } else {
-      if (fileWrapper) fileWrapper.classList.remove('d-none');
-      if (folderWrapper) folderWrapper.classList.add('d-none');
+      fileWrapper.classList.remove('d-none');
+      folderWrapper.classList.add('d-none');
     }
   },
 
@@ -818,7 +802,7 @@ const App = {
   execUpload: async function() {
     const isFolderMode = document.getElementById('uploadTypeFolder').checked;
     const inputEl = isFolderMode ? document.getElementById('folder-input') : document.getElementById('file-input');
-    const files = inputEl ? Array.from(inputEl.files) : [];
+    const files = Array.from(inputEl.files);
 
     if (files.length === 0) {
       Swal.fire('Peringatan', isFolderMode ? 'Pilih folder yang ingin diunggah!' : 'Pilih file terlebih dahulu!', 'warning');
@@ -859,7 +843,7 @@ const App = {
         });
 
         this.modalUploadInst.hide();
-        if (inputEl) inputEl.value = '';
+        inputEl.value = '';
         if (res.success) {
           Swal.fire('Selesai', 'Folder beserta seluruh isinya (' + res.uploadedCount + ' file) berhasil diunggah!', 'success');
         } else {
@@ -877,7 +861,7 @@ const App = {
         const successCount = results.filter(r => r.success).length;
 
         this.modalUploadInst.hide();
-        if (inputEl) inputEl.value = '';
+        inputEl.value = '';
         Swal.fire('Selesai', successCount + ' dari ' + files.length + ' file berhasil diunggah!', 'success');
       }
 
@@ -888,10 +872,8 @@ const App = {
   },
 
   openVaultSettingsModal: function() {
-    const nameEl = document.getElementById('setting-vault-name');
-    const pinEl = document.getElementById('setting-vault-pin');
-    if (nameEl) nameEl.value = this.activeVault.nama;
-    if (pinEl) pinEl.value = '';
+    document.getElementById('setting-vault-name').value = this.activeVault.nama;
+    document.getElementById('setting-vault-pin').value = '';
     this.modalVaultSettingsInst.show();
   },
 
@@ -935,10 +917,8 @@ const App = {
 
   openAdminModal: function() {
     this.closeSidebarMobile();
-    const u = document.getElementById('admin-user');
-    const p = document.getElementById('admin-pass');
-    if (u) u.value = '';
-    if (p) p.value = '';
+    document.getElementById('admin-user').value = '';
+    document.getElementById('admin-pass').value = '';
     this.modalAdminInst.show();
   },
 
@@ -956,18 +936,10 @@ const App = {
         if (res.success) {
           this.modalAdminInst.hide();
           this.currentRole = 'ADMIN';
-          
-          const btnAdmin = document.getElementById('btn-mode-admin');
-          const btnPublic = document.getElementById('btn-mode-public');
-          const badge = document.getElementById('status-badge');
-
-          if (btnAdmin) btnAdmin.classList.add('d-none');
-          if (btnPublic) btnPublic.classList.remove('d-none');
-          if (badge) {
-            badge.className = 'badge bg-warning text-dark px-3 py-2 fw-bold';
-            badge.innerText = 'Status: Mode Admin';
-          }
-
+          document.getElementById('btn-mode-admin').classList.add('d-none');
+          document.getElementById('btn-mode-public').classList.remove('d-none');
+          document.getElementById('status-badge').className = 'badge bg-warning text-dark px-3 py-2 fw-bold';
+          document.getElementById('status-badge').innerText = 'Status: Mode Admin';
           Swal.fire('Login Admin Sukses', 'Panel Kontrol Dibuka', 'success');
           this.vaults = res.vaults || this.vaults;
           this.renderAdminDashboard(this.vaults);
@@ -979,17 +951,10 @@ const App = {
 
   switchPublicMode: function() {
     this.currentRole = 'PUBLIC';
-    const btnAdmin = document.getElementById('btn-mode-admin');
-    const btnPublic = document.getElementById('btn-mode-public');
-    const badge = document.getElementById('status-badge');
-
-    if (btnAdmin) btnAdmin.classList.remove('d-none');
-    if (btnPublic) btnPublic.classList.add('d-none');
-    if (badge) {
-      badge.className = 'badge bg-dark border border-secondary text-warning px-3 py-2';
-      badge.innerText = 'Status: Publik';
-    }
-    
+    document.getElementById('btn-mode-admin').classList.remove('d-none');
+    document.getElementById('btn-mode-public').classList.add('d-none');
+    document.getElementById('status-badge').className = 'badge bg-dark border border-secondary text-warning px-3 py-2';
+    document.getElementById('status-badge').innerText = 'Status: Publik';
     this.fetchInitialData();
   },
 
@@ -997,21 +962,18 @@ const App = {
     this.activeVault = null;
     this.currentFolderId = null;
 
-    const headerTitle = document.getElementById('header-title');
-    if (headerTitle) {
-      headerTitle.innerHTML = 
-        '<div class="top-navbar-title-wrap">' +
-          '<i class="fas fa-sliders text-warning fa-lg"></i>' +
-          '<span class="fw-bold fs-5 text-dark text-truncate">PANEL MANAJEMEN ADMIN</span>' +
-        '</div>';
-    }
+    document.getElementById('header-title').innerHTML = 
+      '<div class="top-navbar-title-wrap">' +
+        '<i class="fas fa-sliders text-warning fa-lg"></i>' +
+        '<span class="fw-bold fs-5 text-dark text-truncate">PANEL MANAJEMEN ADMIN</span>' +
+      '</div>';
     
-    let html = '<div class="p-2 p-md-3">' +
-               '<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">' +
+    let html = '<div class="p-3 p-md-4">' +
+               '<div class="d-flex justify-content-between align-items-center mb-4">' +
                '<h5 class="fw-bold text-dark m-0">Daftar Menu Berangkas</h5>' +
                '<button class="btn btn-gold" onclick="App.openCreateVaultModal()"><i class="fas fa-plus-circle me-2"></i> Tambah Menu Berangkas</button>' +
                '</div>' +
-               '<div class="dark-vault p-3 p-md-4 rounded-4 mb-4"><div class="table-responsive"><table class="table table-dark-vault align-middle"><thead><tr>' +
+               '<div class="dark-vault p-4 rounded-4 mb-4"><div class="table-responsive"><table class="table table-dark-vault align-middle"><thead><tr>' +
                '<th>ID</th><th>Nama Menu Berangkas</th><th>PIN (Atur/Kosongkan)</th><th class="text-center">Aksi</th>' +
                '</tr></thead><tbody>';
 
@@ -1026,17 +988,15 @@ const App = {
               '<td><input type="text" id="admin-name-' + v.id + '" class="form-control form-control-dark" value="' + safeVaultName + '"></td>' +
               '<td><input type="text" maxlength="6" id="admin-pin-' + v.id + '" class="form-control form-control-dark" value="' + (v.pin || '') + '" placeholder="Kosongkan jika Tanpa PIN"></td>' +
               '<td class="text-center"><div class="d-flex align-items-center justify-content-center gap-1">' +
-              '<button type="button" class="btn btn-sm btn-outline-metal" onclick="App.moveVaultOrder(\'' + v.id + '\', \'up\')" ' + isFirst + ' title="Pindah Ke Atas"><i class="fas fa-arrow-up"></i></button>' +
-              '<button type="button" class="btn btn-sm btn-outline-metal" onclick="App.moveVaultOrder(\'' + v.id + '\', \'down\')" ' + isLast + ' title="Pindah Ke Bawah"><i class="fas fa-arrow-down"></i></button>' +
-              '<button type="button" class="btn btn-gold btn-sm ms-2" onclick="App.saveVaultConfig(\'' + v.id + '\')"><i class="fas fa-save me-1"></i> Simpan</button>' +
-              '<button type="button" class="btn btn-outline-danger btn-sm" onclick="App.deleteVault(\'' + v.id + '\')"><i class="fas fa-trash me-1"></i> Hapus</button>' +
+              '<button class="btn btn-sm btn-outline-metal" onclick="App.moveVaultOrder(\'' + v.id + '\', \'up\')" ' + isFirst + ' title="Pindah Ke Atas"><i class="fas fa-arrow-up"></i></button>' +
+              '<button class="btn btn-sm btn-outline-metal" onclick="App.moveVaultOrder(\'' + v.id + '\', \'down\')" ' + isLast + ' title="Pindah Ke Bawah"><i class="fas fa-arrow-down"></i></button>' +
+              '<button class="btn btn-gold btn-sm ms-2" onclick="App.saveVaultConfig(\'' + v.id + '\')"><i class="fas fa-save me-1"></i> Simpan</button>' +
+              '<button class="btn btn-outline-danger btn-sm" onclick="App.deleteVault(\'' + v.id + '\')"><i class="fas fa-trash me-1"></i> Hapus</button>' +
               '</div></td></tr>';
     });
 
     html += '</tbody></table></div></div></div>';
-    
-    const viewContainer = document.getElementById('view-container');
-    if (viewContainer) viewContainer.innerHTML = html;
+    document.getElementById('view-container').innerHTML = html;
   },
 
   moveVaultOrder: function(vaultId, direction) {
@@ -1061,10 +1021,8 @@ const App = {
   },
 
   openCreateVaultModal: function() {
-    const nameEl = document.getElementById('new-vault-name');
-    const pinEl = document.getElementById('new-vault-pin');
-    if (nameEl) nameEl.value = '';
-    if (pinEl) pinEl.value = '';
+    document.getElementById('new-vault-name').value = '';
+    document.getElementById('new-vault-pin').value = '';
     this.modalVaultInst.show();
   },
 
