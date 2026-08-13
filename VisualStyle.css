@@ -443,6 +443,23 @@ html, body {
   cursor: grabbing;
 }
 
+/* PENYESUAIAN TOMBOL HEADER */
+.top-navbar .badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+#btn-refresh-manual {
+  min-width: 36px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
 /* MEDIA QUERIES RESPONSIVE */
 @media (max-width: 767.98px) {
   #sidebar {
@@ -475,6 +492,24 @@ html, body {
 
   .top-navbar {
     padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .top-navbar > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  #status-badge {
+    font-size: 0.75rem;
+    padding: 6px 10px !important;
+  }
+
+  #btn-install-pwa {
+    font-size: 0.75rem !important;
+    padding: 6px 10px !important;
   }
 
   .vault-header-actions {
