@@ -49,24 +49,7 @@ const App = {
     this.setupPWA();
     this.fetchInitialData();
 
-    // Tambahkan di dalam fungsi init: function() { ... } pada AppEngine.js
-    handleIncomingShare: function() {
-      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data && event.data.action === 'LOAD_SHARED_FILES') {
-            const sharedFiles = event.data.files;
-            if (sharedFiles && sharedFiles.length > 0) {
-              // Buka modal unggah atau langsung proses upload file yang dibagikan
-              Swal.fire({
-                title: 'File Diterima!',
-                text: `Menerima ${sharedFiles.length} file dari aplikasi lain. Silakan pilih berangkas tujuan unggah.`,
-                icon: 'info'
-              });
-            }
-          }
-        });
-      }
-    }
+    
   },
 
   handleManualRefresh: function() {
