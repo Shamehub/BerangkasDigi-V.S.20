@@ -48,9 +48,106 @@ const App = {
 
     this.setupPWA();
     this.fetchInitialData();
-
     
+    // Cek apakah aplikasi dibuka melalui menu "Kirim/Share"
+    this.handleIncomingShare();
   },
+
+  handleIncomingShare: async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has('share')) return;
+
+    // Hapus parameter URL agar tidak muncul lagi saat di-refresh
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    try {
+      const cache = await caches.open('shared-files-cache');
+      const keys = await cache.keys();
+      
+      if (keys.length === 0) return;
+
+      const sharedFiles = [];
+      for (const key of keys) {
+        const res = await cache.get(key);
+        const blob = await res.blob();
+        const fileName = decodeURIComponent(res.headers.get('x-file-name') || 'file_shared');
+        const file = new File([blob], fileName, { type: blob.type });
+        sharedFiles.push(file);
+      }
+
+      // Bersihkan cache setelah dibaca
+      for (const key of keys) {
+        await cache.delete(key);
+      }
+
+      // Tampilkan Dialog Pemilihan Berangkas / Folder (Mirip Google Drive)
+      this.promptSelectVaultForShare(sharedFiles);
+
+    } catch (err) {
+      console.error('Error membaca file share:', err);
+    }
+  },
+
+  promptSelectVaultForShare: function(files) {
+    if (!this.vaults || this.vaults.length === 0) {
+      Swal.fire('Perhatian', 'Gagal memuat daftar berangkas. Silakan buka aplikasi terlebih dahulu.', 'warning');
+      return;
+    }
+
+    // Buat opsi pilihan Berangkas/Vault
+    let optionsHtml = '';
+    this.vaults.forEach(vault => {
+      optionsHtml += `<option value="${vault.id}">${vault.name}</option>`;
+    });
+
+    Swal.fire({
+      title: 'Simpan File ke Berangkas',
+      html: `
+        <p class="text-muted small mb-3">Menerima <b>${files.length} file</b> dari aplikasi lain.</p>
+        <div class="text-start mb-3">
+          <label class="form-label font-bold small">Pilih Berangkas Tujuan:</label>
+          <select id="swal-share-vault-select" class="form-select bg-dark text-white border-secondary">
+            ${optionsHtml}
+          </select>
+        </div>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Lanjutkan Upload',
+      cancelButtonText: 'Batal',
+      confirmButtonColor: '#d4af37',
+      preConfirm: () => {
+        const selectedVaultId = document.getElementById('swal-share-vault-select').value;
+        return selectedVaultId;
+      }
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const vaultId = result.value;
+        const targetVault = this.vaults.find(v => v.id === vaultId);
+        
+        // Buka modal upload bawaan aplikasi dan masukkan file yang diterima
+        this.currentVault = targetVault;
+        this.openUploadModalWithFiles(files);
+      }
+    });
+  },
+
+  openUploadModalWithFiles: function(files) {
+    // Masukkan file ke input file modal unggah
+    const fileInput = document.getElementById('upload-file-input');
+    if (fileInput) {
+      const dataTransfer = new DataTransfer();
+      files.forEach(file => dataTransfer.items.add(file));
+      fileInput.files = dataTransfer.files;
+
+      // Trigger event 'change' agar UI preview upload memperbarui daftar file
+      fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    // Tampilkan Modal Upload
+    if (this.modalUploadInst) {
+      this.modalUploadInst.show();
+    }
+  }
 
   handleManualRefresh: function() {
     console.log("Tombol refresh diklik!"); // Untuk tracking di console
