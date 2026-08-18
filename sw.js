@@ -9,26 +9,42 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
 
-  // Tangkap request kiriman file dari menu Share Android
-  if (e.request.method === 'POST' && url.pathname.endsWith('index.html')) {
+  // Jika menerima kiriman file dari tombol Share
+  if (e.request.method === 'POST' && url.searchParams.has('action')) {
     e.respondWith((async () => {
-      const formData = await e.request.formData();
-      const files = formData.getAll('shared_files');
-      
-      // Kirim data file ke jendela aplikasi yang sedang terbuka
-      const client = await self.clients.get(e.resultingClientId || e.clientId);
-      if (client) {
-        client.postMessage({
-          action: 'LOAD_SHARED_FILES',
-          files: files
-        });
+      try {
+        const formData = await e.request.formData();
+        const files = formData.getAll('shared_files');
+
+        if (files && files.length > 0) {
+          const cache = await caches.open('shared-files-cache');
+          // Clear cache lama
+          const keys = await cache.keys();
+          for (const key of keys) {
+            await cache.delete(key);
+          }
+          
+          // Simpan file baru ke cache
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const response = new Response(file, {
+              headers: {
+                'content-type': file.type,
+                'x-file-name': encodeURIComponent(file.name)
+              }
+            });
+            await cache.put(`/shared-file-${i}`, response);
+          }
+        }
+      } catch (err) {
+        console.error('Gagal menyimpan file dari Share Target:', err);
       }
 
-      return Response.redirect('./index.html', 303);
+      // Redirect ke index.html dengan parameter share=true
+      return Response.redirect('./index.html?share=true', 303);
     })());
     return;
   }
 
-  // Jalankan fetch biasa untuk request lainnya
   e.respondWith(fetch(e.request));
 });
