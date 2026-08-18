@@ -1,4 +1,4 @@
-// Ganti nilai ini dengan Web App URL hasil Deploy
+// Ganti nilai ini dengan Web App URL hasil Deploy Anda
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwN6BhR6SJcZCAaLn0rKnJdnskwgJTUu6avHMyoHZHEp_DiH56RJeK2VZb0MWNp6p7g/exec';[cite: 5]
 
 let deferredPrompt;[cite: 5]
@@ -54,7 +54,6 @@ const App = {
     const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has('share')) return;
 
-    // Bersihkan parameter URL agar tidak memicu ulang saat refresh
     window.history.replaceState({}, document.title, window.location.pathname);
 
     try {
@@ -74,14 +73,11 @@ const App = {
         sharedFiles.push(file);
       }
 
-      // Bersihkan cache setelah dibaca
       for (const key of keys) {
         await cache.delete(key);
       }
 
-      // Tampilkan dialog pilihan berangkas/folder tujuan
       this.promptSelectVaultForShare(sharedFiles);
-
     } catch (err) {
       console.error('Error membaca berkas kiriman share:', err);
     }
@@ -114,8 +110,7 @@ const App = {
       cancelButtonText: 'Batal',
       confirmButtonColor: '#d4af37',
       preConfirm: () => {
-        const selectedVaultId = document.getElementById('swal-share-vault-select').value;
-        return selectedVaultId;
+        return document.getElementById('swal-share-vault-select').value;
       }
     }).then((result) => {
       if (result.isConfirmed && result.value) {
@@ -258,8 +253,6 @@ const App = {
           this.vaults = res.vaults;[cite: 5]
           this.renderSidebar();[cite: 5]
           this.renderHome();[cite: 5]
-
-          // Cek kiriman berkas dari menu Share Android setelah data awal dimuat
           this.handleIncomingShare();
         } else {
           Swal.fire('Error Database', res.message || 'Gagal membaca database', 'error');[cite: 5]
