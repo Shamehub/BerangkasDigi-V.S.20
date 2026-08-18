@@ -1235,7 +1235,7 @@ const App = {
           });
       }
     });
-  },
+  }
 
   refreshAdminDashboard: function() {
     this.serverCall('GET_INITIAL_DATA').then(r => {[cite: 5]
